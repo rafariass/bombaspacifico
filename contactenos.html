@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139061487-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-139061487-1');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="src/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="src/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="src/img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="src/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <!-- favicon -->
+
+    <title>Contáctenos! | Bombas Pacifico</title>
+    <link href="src/css/bootstrap.min.css" rel="stylesheet">
+    <link href="src/css/style.css" rel="stylesheet">
+    <link href="src/css/up.css" rel="stylesheet">
+    <LINK href="src/css/animate.css" rel="stylesheet">
+    <script src="src/js/jquery-3.3.1.min.js"></script>
+    <script src="src/js/popper.min.js"></script>
+    <script src="src/js/bootstrap.min.js"></script>
+    <script src="src/js/holder.min.js"></script>
+    <script src="src/js/up.js"></script>
+    <script>
+        $("#formulario").submit(function (event) {
+            event.preventDefault();
+        });
+        function onload() {
+            var element = document.getElementById('submit');
+            element.onclick = validate;
+        }
+        function validate(event) {
+            event.preventDefault();
+            grecaptcha.execute();
+        }
+        function onSubmit(token) {
+            validar();
+        }
+        function validar(){
+            var datos = $("#formulario").serialize(); //Toma todos los datos del formulario y los guarda en un arreglo.
+            $.ajax({ //Llamamos a ajax.
+                type: "post", //Metodo Post del formulario
+                url: "php/formulario.php", //Directorio del formulario php de validaciones.
+                data: datos, //Enviamos el arreglo con los datos.
+                success: function(respuesta){ //Esperamos una respuesta del Formulario.php
+                    if (respuesta == "ok") { //Llamamos a la funcion correspondiente segun validacion de php.
+                        correcto(); //Function mensaje enviado.
+                    }else{
+                        error(respuesta); //Function mensaje no enviado.
+                    }
+                }
+            })
+        };
+        function correcto() { //Quita el d-none del la alerta mensaje enviado.
+            $("#mensajeError").addClass("d-none");
+            $("#mensajeExito").removeClass("d-none");
+            document.getElementById("nombre").disabled = true;
+            document.getElementById("email").disabled = true;
+            document.getElementById("telefono").disabled = true;
+            document.getElementById("empresa").disabled = true;
+            document.getElementById("mensaje").disabled = true;
+            document.getElementById("sendbutton").disabled = true;
+        }
+        function error(respuesta) { //Quita el d-none del la alerta mensaje no enviado.
+            $("#mensajeExito").addClass("d-none");
+            $("#mensajeError").html(respuesta);
+            $("#mensajeError").removeClass("d-none");
+            grecaptcha.reset();
+        }
+    </script>
+</head>
+
+<body>
+
+    <a class="flotante" id="js_up" href="#ups"><img src="src/img/up.png" width="64" height="64"></a>
+
+    <div class="container-fluid bg-light pt-3 pb-3 d-none d-xl-block">
+        <div class="container align-items-center">
+            <div class="row align-items-center justify-content-end" style="font-size: 15px;">
+                <div class="col-lg-3">
+                    <img src="src/img/logoSemiCompleto.png" width="180" class="d-inline-block align-top" alt="">
+                </div>
+                <div class="col-lg-3 pt-4">
+                    <p>
+                        Nuestro Horario de atención es:
+                        <br> Lunes a Viernes de 8:30 - 18:00.
+                    </p>
+                </div>
+                <div class="col-lg-3 pt-4" style="font-size: 12px;">
+                    <p>
+                        <img src="src/img/icon-location.png" width="35">
+                        <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1664.890042078183!2d-70.62221352143304!3d-33.42897738078006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf6298821f1f%3A0xf4dd6fe22700341e!2sAv.+Providencia+1208%2C+Providencia%2C+Regi%C3%B3n+Metropolitana!5e0!3m2!1ses-419!2scl!4v1536764301841" 
+                        target="_blank">Av. Providencia 1208 of. 1603, Santiago.</a>
+                    </p>
+                </div>
+                <div class="col-lg-3 pt-4">
+                    <p>
+                        <img src="src/img/icon-cell.png" width="28">+569 3543 8537<br>
+                        <img src="src/img/icon-mail.png" width="30">
+                        <a href="mailto:ventas@bombaspacifico.cl">ventas@bombaspacifico.cl</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sticky-top">
+        <div class="d-block d-xl-none text-white text-center pt-3 pb-1 border-danger " style="background: #001d7e">
+            <p>
+                <img src="src/img/icon-cell2.png" width="28">+569 3543 8537<br>
+                <img src="src/img/icon-mail2.png" width="30">
+                <a href="mailto:ventas@bombaspacifico.cl" class="text-white">ventas@bombaspacifico.cl</a>
+            </p>
+        </div>
+        <div class="container-fluid bg-light">
+            <nav class="container navbar navbar-expand-xl navbar-light bg-light border-top border-bottom">
+                <a class="navbar-brand d-xl-none" href="index.html">
+                    <img src="src/img/logoSemiCompleto.png" width="100" class="d-inline-block align-top" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="productos.html">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="servicios.html">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="energiaSolar.html">Energia Solar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="">Contáctenos!<span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <section class="jumbotron" style="background-image: url(src/img/contactenos/contactenos.jpg); background-repeat: no-repeat; background-position: center;">
+        <div class="container py-3 text-white rounded form-box" style="background: rgba(0, 0, 0, 0.5);">
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-lg-10">
+                    <h1 class="jumbotron-heading pb-2">Formulario de Contacto</h1>
+                    <hr class="bg-light">
+                    <p class="">Te invitamos a contactarnos.</p>
+                    <div class="alert alert-success d-none" id="mensajeExito">Mensaje enviado correctamente.</div>
+                    <div class="alert alert-danger d-none" id="mensajeError"></div>
+                    <form id="formulario"> <!-- Quitar el novalidate -->
+                        <div class="row form-group">
+                            <label for="nombre" class="col-form-label col-md-4">Nombre y Apellido:</label>
+                            <div class="col-md-8">
+                                <input type="text" name="nombre" value="" id="nombre" class="form-control" minlength="5"
+                                    maxlength="30" required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label for="email" class="col-form-label col-md-4">E-mail:</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">@</span>
+                                    </div>
+                                    <input type="email" name="email" value="" id="email" class="form-control" minlength="5" maxlength="50" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label for="telefono" class="col-form-label col-md-4">Celular:</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">+56</span>
+                                    </div>
+                                    <input type="text" name="telefono" value="" id="telefono" class="form-control"
+                                        minlength="9" maxlength="9" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label for="nombre" class="col-form-label col-md-4">Empresa:</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" name="empresa" value="" id="empresa" class="form-control" maxlength="25" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group align-items-center">
+                            <label for="mensaje" class="col-form-label col-md-4">Mensaje:</label>
+                            <div class="col-md-8">
+                                <textarea rows="4" class="form-control" id="mensaje" name="mensaje" minlength="10"
+                                    maxlength="150" required></textarea>
+                            </div>
+                        </div>
+                        <!-- KEY: BOMBAS PACIFICO -->
+                        <button type="submit" class="btn btn-info w-100 g-recaptcha" data-sitekey="6LfZ528UAAAAAF7nQ4MpaLC6yiIsEd13i4bsBYUV"
+                            data-callback="onSubmit" id="sendbutton" name="sendbutton"> Enviar Mensaje
+                        </button>
+                    </form>
+                    <script src='https://www.google.com/recaptcha/api.js'></script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="album py-5">
+        <div class="container">
+            <div id="">
+                <div class="card">
+                    <div class="btn btn-info" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
+                        <h5 class="lead my-2 text-left">Casa Matriz: (Santiago)</h5>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                    <p class="pl-1 pl-md-4">
+                                        Nuestro Horario de atención es:
+                                        <br> Lunes a Viernes de 8:30 - 18:00.
+                                    </p>
+                                    <p class="pl-1 pl-md-4">
+                                        <img src="src/img/icon-location.png" width="30">
+                                        <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1664.890042078183!2d-70.62221352143304!3d-33.42897738078006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf6298821f1f%3A0xf4dd6fe22700341e!2sAv.+Providencia+1208%2C+Providencia%2C+Regi%C3%B3n+Metropolitana!5e0!3m2!1ses-419!2scl!4v1536764301841"
+                                            target="_blank" style="font-size: 14px;">Av. Providencia 1208 of. 1603, Santiago.</a><br>
+                                    </p>
+                                    <p class="pl-1 pl-md-4">
+                                        <img src="src/img/icon-mail.png" width="27" height="27">
+                                        <a href="mailto:ventas@bombaspacifico.cl" style="font-size: 14px;">ventas@bombaspacifico.cl</a><br>
+                                        <img src="src/img/icon-mail.png" width="27" height="27">
+                                        <a href="mailto:icarrasco@bombaspacifico.cl" style="font-size: 14px;">icarrasco@bombaspacifico.cl</a><br>
+                                    </p>
+                                    <p class="pl-1 pl-md-4" style="font-size: 14px;">
+                                        <img src="src/img/icon-cell.png" width="28"> +569 3543 8537<br>
+                                    </p>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="container bg-light px-2 pt-2 pb-1">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1664.890042078183!2d-70.62221352143304!3d-33.42897738078006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf6298821f1f%3A0xf4dd6fe22700341e!2sAv.+Providencia+1208%2C+Providencia%2C+Regi%C3%B3n+Metropolitana!5e0!3m2!1ses-419!2scl!4v1536764301841"
+                                            frameborder="0" style="border:0" height="450" allowfullscreen class="w-100"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container-fluid bg-light pt-3 mt-5">
+            <div class="container">
+                <div class="d-flex justify-content-center d-xl-none">
+                    <div class="d-flex flex-column">
+                        <div class="pb-4 text-center">
+                            <img src="src/img/logoSemiCompleto.png" width="250" class="d-inline-block align-top" alt="">
+                        </div>
+                        <div class="pl-2" style="font-size: 15px;">
+                            <p class=" pl-2 ml-2">
+                                Nuestro Horario de atención es:
+                                <br> Lunes a Viernes de 8:30 - 18:00.
+                            </p>
+                        </div>
+                        <div class="" style="font-size: 15px;">
+                            <p class="pl-4">
+                                <img src="src/img/icon-location.png" class="pl-0" width="35">
+                                <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1664.890042078183!2d-70.62221352143304!3d-33.42897738078006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf6298821f1f%3A0xf4dd6fe22700341e!2sAv.+Providencia+1208%2C+Providencia%2C+Regi%C3%B3n+Metropolitana!5e0!3m2!1ses-419!2scl!4v1536764301841"
+                                    target="_blank" style="font-size: 13px;">Av. Providencia 1208 of. 1603, Santiago.</a><br>
+                                <img src="src/img/icon-cell.png" class="py-1" width="30"> +569 3543 8537<br>
+                                <img src="src/img/icon-mail.png" width="30">
+                                <a href="mailto:Ventas@bombaspacifico.cl">Ventas@bombaspacifico.cl</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-none d-xl-flex" style="font-size: 15px;">
+                    <div class="col-xl-3">
+                        <img src="src/img/logoSemiCompleto.png" width="180" class="d-inline-block align-top" alt="">
+                    </div>
+                    <div class="col-xl-3 pt-4">
+                        <p class="pl-4 pl-xl-0">
+                            Nuestro Horario de atención es:
+                            <br> Lunes a Viernes de 8:30 - 18:00.
+                        </p>
+                    </div>
+                    <div class="col-xl-3 pt-xl-4 align-self-center" style="font-size: 12px;">
+                        <div class="row align-items-center">
+                            <p class="pl-4 pl-xl-0">
+                                <img src="src/img/icon-location.png" width="35">
+                                <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1664.890042078183!2d-70.62221352143304!3d-33.42897738078006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf6298821f1f%3A0xf4dd6fe22700341e!2sAv.+Providencia+1208%2C+Providencia%2C+Regi%C3%B3n+Metropolitana!5e0!3m2!1ses-419!2scl!4v1536764301841" 
+                                target="_blank">Av. Providencia 1208 of. 1603, Santiago.</a></p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 pt-xl-4">
+                        <p class="pl-4 pl-xl-0">
+                        <img src="src/img/icon-cell.png" width="28"> +569 3543 8537<br>
+                        <img src="src/img/icon-mail.png" width="30">
+                        <a href="mailto:Ventas@bombaspacifico.cl">Ventas@bombaspacifico.cl</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center" style="font-size: 14px;">
+                <div class="container">
+                    <hr>
+                </div>
+            </div>
+            <div class="row align-items-center" style="font-size: 14px;">
+                <div class="container text-center text-xl-left">
+                    <p>BOMBASPACIFICO &copy; Copyright 2018 - Todos los derechos reservados. Created by
+                        <a href="http://www.rafariass.cl" target="_blank" class="text-dark"><ins>rafariass</ins></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
